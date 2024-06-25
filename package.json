@@ -1,0 +1,29 @@
+{
+  "name": "cmdk-lite",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vgarmes/cmdk-lite.github"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no tests\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Victor Garcia Mestre",
+  "license": "MIT",
+  "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
