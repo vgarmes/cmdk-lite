@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from 'react';
 import { commandScore } from './command-score';
 
@@ -398,8 +397,8 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
       // Sort the items
       getValidItems()
         .sort((a, b) => {
-          const valueA = a.getAttribute('id');
-          const valueB = b.getAttribute('id');
+          const valueA = a.getAttribute('id') as string;
+          const valueB = b.getAttribute('id') as string;
           return (scores.get(valueB) ?? 0) - (scores.get(valueA) ?? 0);
         })
         .forEach((item) => {
@@ -409,13 +408,13 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
             group.appendChild(
               item.parentElement === group
                 ? item
-                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)
+                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!
             );
           } else {
-            listInsertionElement.appendChild(
+            listInsertionElement?.appendChild(
               item.parentElement === listInsertionElement
                 ? item
-                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)
+                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!
             );
           }
         });
@@ -426,7 +425,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
           const element = listInnerRef.current?.querySelector(
             `${GROUP_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(group[0])}"]`
           );
-          element?.parentElement.appendChild(element);
+          element?.parentElement?.appendChild(element);
         });
     }
 
@@ -893,7 +892,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-expanded={true}
         aria-controls={context.listId}
         aria-labelledby={context.labelId}
-        aria-activedescendant={selectedItemId}
+        aria-activedescendant={selectedItemId ?? undefined}
         id={context.inputId}
         type="text"
         value={isControlled ? props.value : search}
