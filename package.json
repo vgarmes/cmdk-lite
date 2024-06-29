@@ -10,6 +10,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "release": "pnpm run build && changeset publish",
     "test": "echo \"Error: no tests\" && exit 1"
   },
   "keywords": [],
