@@ -123,7 +123,7 @@ type Context = {
 };
 type State = {
   search: string;
-  value: string;
+  value: string | null;
   filtered: { count: number; items: Map<string, number>; groups: Set<string> };
 };
 type Store = {
@@ -434,7 +434,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
         (item) => item.getAttribute('aria-disabled') !== 'true'
       );
       const value = item?.getAttribute(VALUE_ATTR);
-      store.setState('value', value || undefined);
+      store.setState('value', value ?? null);
     }
 
     /** Filters the current items. */
@@ -465,7 +465,8 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
       // Check which groups have at least 1 item shown
       for (const [groupId, group] of allGroups.current) {
         for (const itemId of group) {
-          if (state.current.filtered.items.get(itemId) > 0) {
+          const item = state.current.filtered.items.get(itemId);
+          if (item && item > 0) {
             state.current.filtered.groups.add(groupId);
             break;
           }
@@ -538,7 +539,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     function updateSelectedByGroup(change: 1 | -1) {
       const selected = getSelectedItem();
       let group = selected?.closest(GROUP_SELECTOR);
-      let item: HTMLElement;
+      let item: HTMLElement | undefined | null;
 
       while (group && !item) {
         group =
@@ -705,14 +706,16 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
     const selected = useCmdk(
       (state) => state.value && state.value === value.current
     );
-    const render = useCmdk((state) =>
-      forceMount
-        ? true
-        : context.filter() === false
-        ? true
-        : !state.search
-        ? true
-        : state.filtered.items.get(id) > 0
+
+    const render = useCmdk(
+      (state) =>
+        forceMount
+          ? true
+          : context.filter() === false
+          ? true
+          : !state.search
+          ? true
+          : (state.filtered.items.get(id) ?? 0) > 0 // handle undefined as 0 so condition returns false
     );
 
     React.useEffect(() => {
@@ -724,11 +727,11 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 
     function onSelect() {
       select();
-      propsRef.current.onSelect?.(value.current);
+      if (value.current) propsRef.current.onSelect?.(value.current);
     }
 
     function select() {
-      store.setState('value', value.current, true);
+      store.setState('value', value.current ?? null, true);
     }
 
     if (!render) return null;
@@ -867,6 +870,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const context = useCommand();
 
     const selectedItemId = React.useMemo(() => {
+      if (!value) return;
       const item = context.listInnerRef.current?.querySelector(
         `${ITEM_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(value)}"]`
       );
@@ -1115,7 +1119,7 @@ function useValue(
           return part.trim();
         }
 
-        if (typeof part === 'object' && 'current' in part) {
+        if (part && typeof part === 'object' && 'current' in part) {
           if (part.current) {
             return part.current.textContent?.trim();
           }
@@ -1126,6 +1130,7 @@ function useValue(
 
     const keywords = aliases.map((alias) => alias.trim());
 
+    if (!value) return;
     context.value(id, value, keywords);
     ref.current?.setAttribute(VALUE_ATTR, value);
     valueRef.current = value;
