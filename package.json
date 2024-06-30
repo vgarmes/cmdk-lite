@@ -9,8 +9,9 @@
   "main": "index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsup src/index.tsx --format esm --dts",
     "release": "pnpm run build && changeset publish",
+    "lint": "tsc",
     "test": "echo \"Error: no tests\" && exit 1"
   },
   "keywords": [],
