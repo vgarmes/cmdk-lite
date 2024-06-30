@@ -9,10 +9,11 @@
     "access": "public"
   },
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx --format esm --dts",
+    "build": "tsup src/index.tsx --format cjs,esm --dts",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
     "test": "echo \"Error: no tests\" && exit 1"
