@@ -1,5 +1,11 @@
 # cmdk-lite
 
+## 0.0.4
+
+### Patch Changes
+
+- cff42b4: fix dist folder live
+
 ## 0.0.3
 
 ### Patch Changes
