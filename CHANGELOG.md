@@ -1,5 +1,11 @@
 # cmdk-lite
 
+## 0.0.5
+
+### Patch Changes
+
+- 9409003: Only esm modules
+
 ## 0.0.4
 
 ### Patch Changes
