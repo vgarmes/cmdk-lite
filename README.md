@@ -34,7 +34,7 @@ const CommandMenu = () => {
 };
 ```
 
-If you want to render it in a dialog, you need to provide the dialog component yourself (because the library doesn't have any dependencies). For example, using Material UI's Dialog component:
+If you want to render it in a dialog, you need to provide the dialog component yourself (because the library doesn't provide any). For example, using Material UI's Dialog component:
 
 ```tsx
 import { Command } from 'cmdk-lite';
