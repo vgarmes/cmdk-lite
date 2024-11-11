@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/vgarmes/cmdk-lite/issues"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vgarmes/cmdk-lite.github"
@@ -19,29 +22,30 @@
     "access": "public"
   },
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsup src/index.tsx --format esm --dts",
+    "build": "tsc",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
-    "test": "echo \"Error: no tests\" && exit 1",
+    "test": "vitest run",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "pnpm run check-format && pnpm run build"
+    "ci": "pnpm run build && pnpm run check-format && pnpm run check-exports && pnpm run test",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "local-release": "changeset version && changeset publish",
+    "prepublishOnly": "pnpm run ci"
   },
   "author": "Victor Garcia Mestre",
   "license": "MIT",
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
     "@changesets/cli": "^2.27.6",
-    "@total-typescript/tsconfig": "^1.0.4",
     "@types/react": "^18.3.3",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "vitest": "^2.1.4"
   },
   "peerDependencies": {
     "react": "^18.3.1",
