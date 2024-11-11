@@ -1,6 +1,16 @@
 {
   "name": "cmdk-lite",
   "version": "0.0.5",
+  "description": "A lightweight, unopinionated, zero dependency command menu for React",
+  "keywords": [
+    "command",
+    "menu",
+    "react"
+  ],
+  "homepage": "https://github.com/vgarmes/cmdk-lite",
+  "bugs": {
+    "url": "https://github.com/vgarmes/cmdk-lite/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vgarmes/cmdk-lite.github"
@@ -16,15 +26,18 @@
     "build": "tsup src/index.tsx --format esm --dts",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
-    "test": "echo \"Error: no tests\" && exit 1"
+    "test": "echo \"Error: no tests\" && exit 1",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "ci": "pnpm run check-format && pnpm run build"
   },
-  "keywords": [],
   "author": "Victor Garcia Mestre",
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.27.6",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/react": "^18.3.3",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tsup": "^8.1.0",
