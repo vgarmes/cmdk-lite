@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { commandScore } from './command-score.js';
+import { commandScore } from './command-score';
 
 type Children = { children?: React.ReactNode };
 type DivProps = React.HTMLAttributes<HTMLDivElement>;

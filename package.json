@@ -24,13 +24,13 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
     "test": "vitest run",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "pnpm run build && pnpm run check-format && pnpm run check-exports && pnpm run test",
+    "ci": "pnpm run build && pnpm run check-format && pnpm run check-exports && pnpm run test && pnpm run lint",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "pnpm run ci"
@@ -44,6 +44,7 @@
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
     "typescript": "^5.5.2",
     "vitest": "^2.1.4"
   },
