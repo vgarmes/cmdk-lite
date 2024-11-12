@@ -1,5 +1,11 @@
 # cmdk-lite
 
+## 0.1.0
+
+### Minor Changes
+
+- 66f9056: Change compiler to tsc
+
 ## 0.0.5
 
 ### Patch Changes
