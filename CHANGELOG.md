@@ -1,5 +1,11 @@
 # cmdk-lite
 
+## 0.1.1
+
+### Patch Changes
+
+- 6dccb28: exclude tests in dist
+
 ## 0.1.0
 
 ### Minor Changes
