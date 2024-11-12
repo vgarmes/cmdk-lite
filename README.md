@@ -1,4 +1,4 @@
-# cmdk-lite
+# cmdk-lite [![cmdk-lite minzip package size](https://img.shields.io/bundlephobia/minzip/cmdk-lite)](https://www.npmjs.com/package/cmdk-lite?activeTab=code) [![cmdk-lite package version](https://img.shields.io/npm/v/cmdk-lite.svg?colorB=green)](https://www.npmjs.com/package/cmdk-lite)
 
 cmdk-lite is a command menu for React based on [pacocoursey's cmdk](https://github.com/pacocoursey/cmdk) but without any dependencies. cmdk-lite is library-agnostic, allowing you to choose how you want to render the command menu.
 
