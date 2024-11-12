@@ -132,7 +132,7 @@ type Store = {
   setState: <K extends keyof State>(
     key: K,
     value: State[K],
-    opts?: any
+    opts?: any,
   ) => void;
   emit: () => void;
 };
@@ -151,7 +151,7 @@ const VALUE_ATTR = `data-value`;
 const defaultFilter: Exclude<CommandProps['filter'], undefined> = (
   value,
   search,
-  keywords = []
+  keywords = [],
 ) => commandScore(value, search, keywords);
 
 // @ts-ignore
@@ -195,7 +195,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     const allItems = useLazyRef<Set<string>>(() => new Set()); // [...itemIds]
     const allGroups = useLazyRef<Map<string, Set<string>>>(() => new Map()); // groupId → [...itemIds]
     const ids = useLazyRef<Map<string, { value: string; keywords?: string[] }>>(
-      () => new Map()
+      () => new Map(),
     ); // id → { value, keywords }
     const listeners = useLazyRef<Set<() => void>>(() => new Set()); // [...rerenders]
     const propsRef = useAsRef(props);
@@ -353,7 +353,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
         labelId,
         listInnerRef,
       }),
-      []
+      [],
     );
 
     function score(value: string, keywords?: string[]) {
@@ -408,13 +408,13 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
             group.appendChild(
               item.parentElement === group
                 ? item
-                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!
+                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!,
             );
           } else {
             listInsertionElement?.appendChild(
               item.parentElement === listInsertionElement
                 ? item
-                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!
+                : item.closest(`${GROUP_ITEMS_SELECTOR} > *`)!,
             );
           }
         });
@@ -423,7 +423,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
         .sort((a, b) => b[1] - a[1])
         .forEach((group) => {
           const element = listInnerRef.current?.querySelector(
-            `${GROUP_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(group[0])}"]`
+            `${GROUP_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(group[0])}"]`,
           );
           element?.parentElement?.appendChild(element);
         });
@@ -431,7 +431,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
 
     function selectFirstItem() {
       const item = getValidItems().find(
-        (item) => item.getAttribute('aria-disabled') !== 'true'
+        (item) => item.getAttribute('aria-disabled') !== 'true',
       );
       const value = item?.getAttribute(VALUE_ATTR);
       store.setState('value', value ?? null);
@@ -497,13 +497,13 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
 
     function getSelectedItem() {
       return listInnerRef.current?.querySelector(
-        `${ITEM_SELECTOR}[aria-selected="true"]`
+        `${ITEM_SELECTOR}[aria-selected="true"]`,
       );
     }
 
     function getValidItems() {
       return Array.from(
-        listInnerRef.current?.querySelectorAll(VALID_ITEM_SELECTOR) || []
+        listInnerRef.current?.querySelectorAll(VALID_ITEM_SELECTOR) || [],
       );
     }
 
@@ -528,8 +528,8 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
           index + change < 0
             ? items[items.length - 1]
             : index + change === items.length
-            ? items[0]
-            : items[index + change];
+              ? items[0]
+              : items[index + change];
       }
 
       if (newSelected)
@@ -672,7 +672,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -699,12 +699,12 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       id,
       ref,
       [props.value, props.children, ref],
-      props.keywords
+      props.keywords,
     );
 
     const store = useStore();
     const selected = useCmdk(
-      (state) => state.value && state.value === value.current
+      (state) => state.value && state.value === value.current,
     );
 
     const render = useCmdk(
@@ -712,10 +712,10 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         forceMount
           ? true
           : context.filter() === false
-          ? true
-          : !state.search
-          ? true
-          : (state.filtered.items.get(id) ?? 0) > 0 // handle undefined as 0 so condition returns false
+            ? true
+            : !state.search
+              ? true
+              : (state.filtered.items.get(id) ?? 0) > 0, // handle undefined as 0 so condition returns false
     );
 
     React.useEffect(() => {
@@ -764,7 +764,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         {props.children}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -783,10 +783,10 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>(
       forceMount
         ? true
         : context.filter() === false
-        ? true
-        : !state.search
-        ? true
-        : state.filtered.groups.has(id)
+          ? true
+          : !state.search
+            ? true
+            : state.filtered.groups.has(id),
     );
 
     useLayoutEffect(() => {
@@ -797,7 +797,7 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>(
 
     const contextValue = React.useMemo(
       () => ({ id, forceMount }),
-      [forceMount]
+      [forceMount],
     );
 
     return (
@@ -831,7 +831,7 @@ const Group = React.forwardRef<HTMLDivElement, GroupProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -853,7 +853,7 @@ const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
         role="separator"
       />
     );
-  }
+  },
 );
 
 /**
@@ -872,7 +872,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const selectedItemId = React.useMemo(() => {
       if (!value) return;
       const item = context.listInnerRef.current?.querySelector(
-        `${ITEM_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(value)}"]`
+        `${ITEM_SELECTOR}[${VALUE_ATTR}="${encodeURIComponent(value)}"]`,
       );
       return item?.getAttribute('id');
     }, []);
@@ -909,7 +909,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         }}
       />
     );
-  }
+  },
 );
 
 /**
@@ -933,7 +933,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>(
             const height = el.offsetHeight;
             wrapper.style.setProperty(
               `--cmdk-list-height`,
-              height.toFixed(1) + 'px'
+              height.toFixed(1) + 'px',
             );
           });
         });
@@ -964,7 +964,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -978,7 +978,7 @@ const Empty = React.forwardRef<HTMLDivElement, EmptyProps>(
     return (
       <div ref={forwardedRef} {...props} cmdk-empty="" role="presentation" />
     );
-  }
+  },
 );
 
 /**
@@ -1004,7 +1004,7 @@ const Loading = React.forwardRef<HTMLDivElement, LoadingProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 const pkg = Object.assign(Command, {
@@ -1083,7 +1083,7 @@ function useLazyRef<T>(fn: () => T) {
 // https://github.com/gregberge/react-merge-refs
 // Copyright (c) 2020 Greg Bergé
 function mergeRefs<T = any>(
-  refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>
+  refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>,
 ): React.RefCallback<T> {
   return (value) => {
     refs.forEach((ref) => {
@@ -1107,7 +1107,7 @@ function useValue(
   id: string,
   ref: React.RefObject<HTMLElement>,
   deps: (string | React.ReactNode | React.RefObject<HTMLElement>)[],
-  aliases: string[] = []
+  aliases: string[] = [],
 ) {
   const valueRef = React.useRef<string>();
   const context = useCommand();
@@ -1167,13 +1167,13 @@ function renderChildren(children: React.ReactElement) {
 
 function SlottableWithNestedChildren(
   { asChild, children }: { asChild?: boolean; children?: React.ReactNode },
-  render: (child: React.ReactNode) => JSX.Element
+  render: (child: React.ReactNode) => JSX.Element,
 ) {
   if (asChild && React.isValidElement(children)) {
     return React.cloneElement(
       renderChildren(children),
       { ref: (children as any).ref },
-      render(children.props.children)
+      render(children.props.children),
     );
   }
   return render(children);

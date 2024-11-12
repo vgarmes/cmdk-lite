@@ -58,7 +58,7 @@ function commandScoreInner(
   lowerAbbreviation: string,
   stringIndex: number,
   abbreviationIndex: number,
-  memoizedResults: Record<string, number>
+  memoizedResults: Record<string, number>,
 ): number {
   if (abbreviationIndex === abbreviation.length) {
     if (stringIndex === str.length) {
@@ -86,7 +86,7 @@ function commandScoreInner(
       lowerAbbreviation,
       index + 1,
       abbreviationIndex + 1,
-      memoizedResults
+      memoizedResults,
     );
     if (score > highScore) {
       if (index === stringIndex) {
@@ -133,7 +133,7 @@ function commandScoreInner(
         lowerAbbreviation,
         index + 1,
         abbreviationIndex + 2,
-        memoizedResults
+        memoizedResults,
       );
 
       if (transposedScore * SCORE_TRANSPOSITION > score) {
@@ -160,7 +160,7 @@ function formatInput(str: string) {
 export function commandScore(
   string: string,
   abbreviation: string,
-  aliases: string[]
+  aliases: string[],
 ): number {
   /* NOTE:
    * in the original, we used to do the lower-casing on each recursive call, but this meant that toLowerCase()
@@ -177,6 +177,6 @@ export function commandScore(
     formatInput(abbreviation),
     0,
     0,
-    {}
+    {},
   );
 }
