@@ -37,6 +37,12 @@
   },
   "author": "Victor Garcia Mestre",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.0",
     "@changesets/cli": "^2.27.6",
