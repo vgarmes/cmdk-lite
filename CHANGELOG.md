@@ -1,5 +1,12 @@
 # cmdk-lite
 
+## 0.1.2
+
+### Patch Changes
+
+- b226c2f: Revert to using tsup
+- 9cdb13b: add react testing library
+
 ## 0.1.1
 
 ### Patch Changes
