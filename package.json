@@ -11,9 +11,6 @@
   "bugs": {
     "url": "https://github.com/vgarmes/cmdk-lite/issues"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vgarmes/cmdk-lite.github"
@@ -22,43 +19,12 @@
     "access": "public"
   },
   "type": "module",
-  "main": "dist/index.js",
   "scripts": {
-    "build": "tsup",
-    "release": "pnpm run build && changeset publish",
-    "lint": "tsc",
-    "test": "vitest run",
-    "format": "prettier --write .",
-    "check-format": "prettier --check .",
-    "ci": "pnpm run build && pnpm run check-format && pnpm run check-exports && pnpm run test && pnpm run lint",
-    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "local-release": "changeset version && changeset publish",
-    "prepublishOnly": "pnpm run ci"
+    "build": "pnpm -F cmdk-lite build",
+    "ci": "pnpm -F cmdk-lite ci",
+    "release": "pnpm -F cmdk-lite release"
   },
   "author": "Victor Garcia Mestre",
   "license": "MIT",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
-    "@changesets/cli": "^2.27.6",
-    "@testing-library/react": "^16.0.1",
-    "@types/react": "^18.3.3",
-    "@vitejs/plugin-react-swc": "^3.7.1",
-    "happy-dom": "^15.11.3",
-    "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.5.2",
-    "vitest": "^2.1.4"
-  },
-  "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  }
+  "packageManager": "pnpm@9.4.0"
 }
