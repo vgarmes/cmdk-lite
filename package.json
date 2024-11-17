@@ -21,7 +21,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
-    "ci": "pnpm -F cmdk-lite ci",
+    "ci": "pnpm run -F cmdk-lite ci",
     "release": "pnpm -F cmdk-lite release"
   },
   "author": "Victor Garcia Mestre",
