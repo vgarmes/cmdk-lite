@@ -1,31 +1,10 @@
 {
-  "name": "cmdk-lite",
-  "version": "0.1.2",
-  "description": "A lightweight, unopinionated, zero dependency command menu for React",
-  "keywords": [
-    "command",
-    "menu",
-    "react"
-  ],
-  "homepage": "https://github.com/vgarmes/cmdk-lite",
-  "bugs": {
-    "url": "https://github.com/vgarmes/cmdk-lite/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vgarmes/cmdk-lite.github"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "type": "module",
+  "name": "cmdk-lite-root",
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
     "ci": "pnpm run -F cmdk-lite ci",
     "release": "pnpm run ci && changeset publish"
   },
-  "author": "Victor Garcia Mestre",
-  "license": "MIT",
   "packageManager": "pnpm@9.4.0",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.0",
