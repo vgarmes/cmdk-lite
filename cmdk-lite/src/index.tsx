@@ -257,7 +257,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
               // Scroll the selected item into view
               schedule(5, scrollSelectedIntoView);
             }
-            if (propsRef.current.value !== undefined) {
+            if (propsRef.current?.value !== undefined) {
               // If controlled, just call the callback instead of updating state internally
               const newValue = (value ?? '') as string;
               propsRef.current.onValueChange?.(newValue);
