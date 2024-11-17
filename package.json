@@ -22,9 +22,16 @@
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
     "ci": "pnpm run -F cmdk-lite ci",
-    "release": "pnpm -F cmdk-lite release"
+    "release": "pnpm run ci && changeset publish"
   },
   "author": "Victor Garcia Mestre",
   "license": "MIT",
-  "packageManager": "pnpm@9.4.0"
+  "packageManager": "pnpm@9.4.0",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
+    "@changesets/cli": "^2.27.9",
+    "prettier": "^3.3.3",
+    "tsup": "^8.3.5",
+    "typescript": "^5.5.2"
+  }
 }

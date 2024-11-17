@@ -17,7 +17,6 @@
 
     /* If transpiling with TypeScript: */
     "module": "Preserve",
-
     "jsx": "react-jsx",
 
     /* use tsc as a linter */
