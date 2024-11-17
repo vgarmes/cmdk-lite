@@ -30,7 +30,7 @@
     "test": "vitest run",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "pnpm run check-format && pnpm run check-exports && pnpm run test && pnpm run lint && pnpm run build",
+    "ci": "pnpm run check-format && pnpm run check-exports && pnpm run test && pnpm run lint",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "pnpm run ci"

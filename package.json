@@ -3,7 +3,7 @@
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
     "ci": "pnpm run -F cmdk-lite ci",
-    "release": "pnpm run ci && changeset publish"
+    "release": "pnpm run build && changeset publish"
   },
   "packageManager": "pnpm@9.4.0",
   "devDependencies": {
