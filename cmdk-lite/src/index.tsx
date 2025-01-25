@@ -51,8 +51,9 @@ type GroupProps = Children &
     /** Whether this group is forcibly rendered regardless of filtering. */
     forceMount?: boolean;
   };
+
 type InputProps = Omit<
-  React.HTMLAttributes<HTMLInputElement>,
+  React.InputHTMLAttributes<HTMLInputElement>,
   'value' | 'onChange' | 'type'
 > & {
   /**
@@ -64,6 +65,7 @@ type InputProps = Omit<
    */
   onValueChange?: (search: string) => void;
 };
+
 type CommandProps = Children &
   DivProps & {
     /**

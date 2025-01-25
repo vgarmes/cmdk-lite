@@ -9,7 +9,6 @@ describe('Router', () => {
 
   it('should render without issues', () => {
     render(<Command />);
-    screen.debug();
     expect(true).toBeTruthy();
   });
 });
