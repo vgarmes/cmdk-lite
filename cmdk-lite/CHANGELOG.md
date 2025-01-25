@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 14ec9b6: fix types
+
+## 0.1.4
+
+### Patch Changes
+
 - dc39785: fix input props type
 
 ## 0.1.3
