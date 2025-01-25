@@ -2,7 +2,7 @@
   "name": "cmdk-lite-root",
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
-    "release": "pnpm -F cmdk-lite run release",
+    "release": "pnpm run -F cmdk-lite build && changeset publish",
     "local-release": "changeset version && changeset publish",
     "check-format": "prettier --check .",
     "ci": "pnpm run check-format && pnpm run -F cmdk-lite ci && pnpm run -F website lint"
