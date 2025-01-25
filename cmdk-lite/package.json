@@ -1,6 +1,6 @@
 {
   "name": "cmdk-lite",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A lightweight, unopinionated, zero dependency command menu for React",
   "keywords": [
     "command",
