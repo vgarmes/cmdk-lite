@@ -2,9 +2,10 @@
   "name": "cmdk-lite-root",
   "scripts": {
     "build": "pnpm -F cmdk-lite build",
-    "ci": "pnpm run -F cmdk-lite ci",
-    "release": "pnpm run release",
-    "local-release": "changeset version && changeset publish"
+    "release": "pnpm -F cmdk-lite run release",
+    "local-release": "changeset version && changeset publish",
+    "check-format": "prettier --check .",
+    "ci": "pnpm run check-format && pnpm run -F cmdk-lite ci && pnpm run -F website lint"
   },
   "packageManager": "pnpm@9.4.0",
   "devDependencies": {

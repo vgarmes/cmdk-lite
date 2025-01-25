@@ -29,9 +29,8 @@
     "lint": "tsc",
     "test": "vitest run",
     "format": "prettier --write .",
-    "check-format": "prettier --check .",
-    "ci": "pnpm run check-format && pnpm run check-exports && pnpm run test && pnpm run lint",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "ci": "pnpm run lint && pnpm run check-exports && pnpm run test",
     "prepublishOnly": "pnpm run ci"
   },
   "author": "Victor Garcia Mestre",

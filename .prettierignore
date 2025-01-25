@@ -1,0 +1,4 @@
+cmdk-lite/dist
+website/.next
+*.yaml
+*.scss
